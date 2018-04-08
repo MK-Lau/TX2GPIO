@@ -4,6 +4,10 @@ This is a sort little pure python script that I threw together to control the GP
 
 Lets get started,
 
+First, you must run your python script as root for this script to work.
+eg, 
+sudo YourPythonScript.py
+
 In order to use a GPIO pin first you need to initalise it in your python script, 
 The simple syntax is 
 
