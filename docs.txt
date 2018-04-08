@@ -1,0 +1,45 @@
+Howdy
+
+This is a sort little pure python script that I threw together to control the GPIO pins on the jetson TX2
+
+Lets get started,
+
+In order to use a GPIO pin first you need to initalise it in your python script, 
+The simple syntax is 
+
+
+Setup
+
+{pinName} = Pin({gpioPinNumber},{direction})
+pinName: can be anything, but it would be wise to call it something useful like 'pin12' or similar.
+gpioPinNumber: This is the pin number of the pin that you would like to control a list can be found at:
+http://www.jetsonhacks.com/nvidia-jetson-tx2-j21-header-pinout/
+direction: this can ONLY be 'out' or 'in', 'out' sets up the pin as a digital output. 'in' sets up pin as a digital input.
+Example 
+pin21 = TX2GPIO.Pin(21,'out') #sets up pin 21 as an output pin; pin variable name set to 'pin21'
+
+
+Output commands
+THE FOLLOWING COMMANDS ONLY WORK IF PIN CONFIGURED AS OUTPUT.
+
+Changing pin state:
+
+{pinName}.output(1) #this will pull the gpio pin high... 
+{pinName}.output(0) #this will pull the gpio pin low... 
+note: output('high') and output(1) are identical similar with 'low' and 0 
+
+Pulse command 
+
+{pinName}.pulse() #this will pulse the pin for 0.1 seconds 
+{pinName}.pulse(1) #will pulse the pin for 1 second. The argurment can be changed to control the timing. 
+DOES NOT WORK WELL AT HIGH FREQUENCIES AND USES PYTHON time.sleep() SO MAY BE UNRELIABLE.
+note: the "pulse" will always be in the opposite direction from what the pin was previously in.
+This means that if the pin is currently pulled low 'pulse' would pull the pin high for the time specified.
+If the pin was high, then it would be pulled low for the time specified.
+
+Input Command
+
+{pinName}.read() #outputs the current state of the pin. 
+If pin setup as input it will read what state the pin is currently reading, 
+if setup as output the command will output what the state is of the pin. 
+
